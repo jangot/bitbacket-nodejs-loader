@@ -19,8 +19,6 @@ const optionDefinitions = [
 
 const args = commandLineArgs(optionDefinitions);
 
-console.log(args);
-
 if (!args.host) {
     console.log('--host is required');
     return;
@@ -38,7 +36,7 @@ bitbacket
 
 async function run(page = 0) {
     const list = await loadReposPage(page, args.dataPath);
-    console.log(`Is last page: ${list.isLastPage}`);
+    console.log(`Next page: ${list.nextPageStart}. Is last page: ${!!list.isLastPage}`);
     if (!list.isLastPage) {
         await run(list.nextPageStart);
     }

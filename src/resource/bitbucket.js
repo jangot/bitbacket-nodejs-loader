@@ -28,7 +28,7 @@ class Client {
 
         if (Client.basic) {
             options.headers = {
-                Authenticated: `Basic ${Client.basic}`
+                Authorization: `Basic ${Client.basic}`
             };
         } else {
             options.auth = auth;
