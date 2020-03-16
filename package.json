@@ -1,6 +1,6 @@
 {
-  "name": "versions",
-  "version": "1.0.0",
+  "name": "bitbacket-nodejs-loader",
+  "version": "1.0.1",
   "main": "index.js",
   "author": "ppilin <ppulin@alfabank.ru>",
   "license": "MIT",
