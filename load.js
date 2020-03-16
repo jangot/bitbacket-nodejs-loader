@@ -19,6 +19,8 @@ const optionDefinitions = [
 
 const args = commandLineArgs(optionDefinitions);
 
+console.log(args);
+
 if (!args.host) {
     console.log('--host is required');
     return;
