@@ -4,7 +4,7 @@ const axios = require('axios');
 
 class Client {
     constructor() {
-        if (!Client.auth) {
+        if (!Client.auth && !Client.basic) {
             throw Error('Auth was not set. Use `Client.useAuth(username, password)`')
         }
         const { api } = config;
@@ -21,11 +21,20 @@ class Client {
             api.pathname = Client.pathname;
         }
 
-        this.bitbucket = axios.create({
+        const options = {
             baseURL: url.format(api),
-            timeout: 20000,
-            auth
-        });
+            timeout: 20000
+        };
+
+        if (Client.basic) {
+            options.headers = {
+                Authenticated: `Basic ${Client.basic}`
+            };
+        } else {
+            options.auth = auth;
+        }
+
+        this.bitbucket = axios.create(options);
         this.bitbucket
             .interceptors
             .response
@@ -65,6 +74,12 @@ Client.useProtocol = function(protocol) {
 };
 Client.usePathname = function(pathname) {
     Client.pathname = pathname;
+
+    return Client;
+};
+
+Client.userBasic = function(basic) {
+    Client.basic = basic;
 
     return Client;
 };

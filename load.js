@@ -10,6 +10,7 @@ const bitbacket = require('./src/resource/bitbucket');
 const optionDefinitions = [
     { name: 'user', type: String, alias: 'u' },
     { name: 'password', type: String, alias: 'p' },
+    { name: 'basic', type: String, alias: 'b' },
     { name: 'host', type: String, alias: 'h' },
     { name: 'protocol', type: String },
     { name: 'pathname', type: String },
@@ -22,8 +23,13 @@ if (!args.host) {
     console.log('--host is required');
     return;
 }
+
+if (args.basic) {
+    bitbacket.userBasic(args.basic);
+} else {
+    bitbacket.useAuth(args.user, args.password);
+}
 bitbacket
-    .useAuth(args.user, args.password)
     .useHost(args.host)
     .useProtocol(args.protocol)
     .usePathname(args.pathname);
