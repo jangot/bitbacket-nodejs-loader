@@ -1,0 +1,20 @@
+{
+  "name": "versions",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "ppilin <ppulin@alfabank.ru>",
+  "license": "MIT",
+  "scripts": {
+    "load": "node load.js",
+    "show": "node generate-table.js"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "command-line-args": "^5.0.2",
+    "config": "^2.0.1",
+    "console.table": "^0.10.0",
+    "lodash": "^4.17.11",
+    "moment": "^2.23.0",
+    "rimraf": "^2.6.3"
+  }
+}
