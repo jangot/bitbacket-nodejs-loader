@@ -20,6 +20,7 @@ function loadProjPage(start) {
                 isLastPage,
                 values: values.map((item) => {
                     const { project, slug, links, name } = item;
+
                     return { project, slug, links, name };
                 })
             };
@@ -72,11 +73,13 @@ function loadPackages(repos = []) {
             })
             .then(output => {
                 if (output.data) {
+                    const clonePath = links.clone.find(item => item.name === 'ssh');
                     result.push({
                         name,
                         lastCommit: output.lastCommit,
                         data: output.data,
-                        repo: links.self
+                        repo: links.self,
+                        clonePath: clonePath.href
                     });
                 }
             })
@@ -93,8 +96,9 @@ module.exports = async function (start = 0, dataPath) {
     const result = await loadPackages(repos.values);
 
     for (let i = 0; i < result.length; i++) {
-        const { data, name, repo, lastCommit } = result[ i ];
+        const { data, name, repo, lastCommit, clonePath } = result[ i ];
         data.repo = repo;
+        data.clonePath = clonePath;
         data.lastCommit = lastCommit;
 
         await writeFile(`${dataPath}/${name}.json`, JSON.stringify(data))
