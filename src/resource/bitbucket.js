@@ -7,8 +7,7 @@ class Client {
         if (!Client.auth && !Client.basic) {
             throw Error('Auth was not set. Use `Client.useAuth(username, password)`')
         }
-        const { api } = config;
-        const { auth } = Client;
+        const { auth, api } = Client;
 
         if (!Client.host) {
             throw Error ('Host is required');
@@ -82,6 +81,12 @@ Client.userBasic = function(basic) {
     Client.basic = basic;
 
     return Client;
+};
+
+Client.setApi = function(api) {
+     Client.api = api;
+
+     return Client;
 };
 
 module.exports = Client;

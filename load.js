@@ -18,6 +18,7 @@ const optionDefinitions = [
 ];
 
 const args = commandLineArgs(optionDefinitions);
+console.log(args);
 
 if (!args.host) {
     console.log('--host is required');
@@ -30,6 +31,10 @@ if (args.basic) {
     bitbacket.useAuth(args.user, args.password);
 }
 bitbacket
+    .setApi({
+        protocol: 'https',
+        pathname: '/rest/api/1.0'
+    })
     .useHost(args.host)
     .useProtocol(args.protocol)
     .usePathname(args.pathname);
