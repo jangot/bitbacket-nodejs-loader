@@ -17,7 +17,7 @@
     "command-line-args": "^5.0.2",
     "config": "^2.0.1",
     "console.table": "^0.10.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "moment": "^2.23.0",
     "rimraf": "^2.6.3"
   }
