@@ -13,7 +13,7 @@
     "show": "./bin/show.js"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "command-line-args": "^5.0.2",
     "config": "^2.0.1",
     "console.table": "^0.10.0",
